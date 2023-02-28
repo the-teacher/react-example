@@ -6,9 +6,8 @@ import getCharactersListQuery from './get-characters-list.gql'
 
 const CharactersList = () => {
   useEffect(() => {
-    ApiService.request(getCharactersListQuery, { page: 1, name: "rick" } ).then(
-      (result) => console.log(result?.data)
-    )
+    ApiService.request(getCharactersListQuery, { page: 1, name: "rick" } )
+    .then((result) => console.log(result.data.characters))
   })
 
   return (

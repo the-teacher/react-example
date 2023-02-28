@@ -1,20 +1,28 @@
 // https://rickandmortyapi.com/documentation/
 
+import { Query } from '../../graphql.schema'
+
 const RICK_AND_MORTY_API = 'https://rickandmortyapi.com/graphql'
 
+type TypeWithData = {
+  data: Query
+}
+
 const ApiService = () => ({
-  request: (query: string, variables?: object) => (
-    fetch(RICK_AND_MORTY_API, {
+  request: async (query: string, variables?: object) => {
+    const reposnse = await fetch(RICK_AND_MORTY_API, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query,
-        variables
+        query: query,
+        variables: variables,
       }),
-    }).then((res) => res.json())
-  )
+    })
+
+    return await reposnse.json() as Promise<TypeWithData>
+  }
 })
 
 export default ApiService()
