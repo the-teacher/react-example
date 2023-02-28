@@ -1,5 +1,3 @@
-import './App.css';
-
 import {
   BrowserRouter,
   Routes,
@@ -13,15 +11,13 @@ import DefaultIndex from "./components/DefaultIndex"
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route exact path="/" element={<IndexPage />} />
-          <Route exact path="/hello-world" element={<HelloWorld />} />
-          <Route exact path="/default" element={<DefaultIndex />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<IndexPage />} />
+        <Route exact path="/hello-world" element={<HelloWorld />} />
+        <Route exact path="/default" element={<DefaultIndex />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
