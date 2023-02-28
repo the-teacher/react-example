@@ -1,9 +1,8 @@
 import * as React from "react"
+import { RickAndMorty } from '../../RickAndMorty'
 
 const IndexPage = () => (
-  <h1>
-    Index Page
-  </h1>
+  <RickAndMorty.CharactersList />
 )
 
 export default IndexPage

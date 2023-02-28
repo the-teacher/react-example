@@ -3,6 +3,6 @@ import IndexPage from './indexPage';
 
 test('renders Index Page', () => {
   render(<IndexPage />);
-  const element = screen.getByText(/Index Page/i);
+  const element = screen.getByText(/RickAndMorty::CharactersList/i);
   expect(element).toBeInTheDocument();
 });
