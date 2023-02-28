@@ -1,3 +1,5 @@
+import * as React from "react"
+
 const IndexPage = () => (
   <h1>
     Index Page
