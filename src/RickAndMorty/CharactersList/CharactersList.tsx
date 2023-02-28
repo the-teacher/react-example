@@ -1,7 +1,19 @@
 import * as React from "react"
+import { useEffect } from "react"
 
-const CharactersList = () => (
-  <>RickAndMorty::CharactersList</>
-)
+import ApiService from '../service'
+import getCharactersListQuery from './get-characters-list.gql'
+
+const CharactersList = () => {
+  useEffect(() => {
+    ApiService.request(getCharactersListQuery, { page: 1, name: "rick" } ).then(
+      (result) => console.log(result?.data)
+    )
+  })
+
+  return (
+    <>RickAndMorty::CharactersList</>
+  )
+}
 
 export default CharactersList
