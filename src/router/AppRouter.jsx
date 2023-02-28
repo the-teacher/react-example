@@ -4,7 +4,7 @@ import { Route } from "react-router-dom"
 import Routes from "./routes"
 
 const AppRoutes = Routes.map(({ path, component }) => (
-  <Route path={path} element={
+  <Route key={path} path={path} element={
     React.createElement(component, {})
   }/>
 ))
