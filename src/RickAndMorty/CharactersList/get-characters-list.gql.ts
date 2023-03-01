@@ -3,6 +3,9 @@ const getCharactersListQuery = `
     characters(page: $page, filter: { name: $name }) {
       info {
         count
+        pages
+        next
+        prev
       }
       results {
         name

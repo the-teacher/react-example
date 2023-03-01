@@ -1,28 +1,22 @@
 import * as React from "react"
-import { Character } from '../../graphql.schema'
-import { ReactNode, useState, createContext, useContext, Dispatch, SetStateAction } from "react"
+import { ReactNode, useState, createContext, useContext } from "react"
 
-type SetFunction<T> = Dispatch<SetStateAction<T>>
-const blankFunction = () => ({})
-
-interface CharactersContextValue {
-  page: Number
-  setPage: SetFunction<Number>
-  name: string,
-  setName: SetFunction<String>,
-  characters: Character[]
-  setCharacters: SetFunction<Character[]>
-  loading: Boolean,
-  setLoading: SetFunction<Boolean>
-}
+import { Character, Info } from '../../graphql.schema'
+import { blankFunction, CharactersContextValue } from './types'
 
 const CharactersContext = createContext<CharactersContextValue>({
-  page: 1,
-  setPage: blankFunction,
   name: '',
   setName: blankFunction,
+
+  page: 1,
+  setPage: blankFunction,
+
+  pagesInfo: {},
+  setPagesInfo: blankFunction,
+
   characters: [],
   setCharacters: blankFunction,
+
   loading: false,
   setLoading: blankFunction
 })
@@ -32,15 +26,17 @@ interface Props {
 }
 
 export const CharactersProvider = ({ children }: Props) => {
-  const [page, setPage] = useState<Number>(1)
   const [name, setName] = useState<string>('')
+  const [page, setPage] = useState<Number>(1)
+  const [pagesInfo, setPagesInfo] = useState<Info>({})
   const [characters, setCharacters] = useState<Character[]>([])
   const [loading, setLoading] = useState<boolean>(false)
 
   return (
     <CharactersContext.Provider value={{
-      page, setPage,
       name, setName,
+      page, setPage,
+      pagesInfo, setPagesInfo,
       characters, setCharacters,
       loading, setLoading
     }}>
