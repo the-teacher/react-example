@@ -2,7 +2,7 @@ import * as React from "react"
 import { useCharactersContext } from '../CharactersContext'
 
 const Pagination = () => {
-  const { pagesInfo: { pages, next}, setPage } = useCharactersContext()
+  const { pagesInfo: { pages, next }, setPage } = useCharactersContext()
 
   const pageLinkHandler = (pageNumber: Number) => (
     () => setPage(pageNumber)
@@ -13,7 +13,7 @@ const Pagination = () => {
       <ul className="pagination">
         {[...Array(pages)].map((_, index) => {
           const pageNumber = index + 1
-          const currentPage = (index + 1) === (next! - 1)
+          const currentPage = (index + 1) === ((next ?? 2) - 1)
           const active = currentPage ? 'active' : ''
 
           return (<li key={index} className={`page-item ${active}`}>
