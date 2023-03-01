@@ -1,15 +1,14 @@
 import * as React from "react"
-import { Character } from '../../graphql.schema'
 import CharacterCard from '../CharacterCard'
 
-type Props = {
-  charactersList: Character[]
-}
+import { useCharactersContext } from '../CharactersContext'
 
-const CharactersListView = ({ charactersList }: Props) => {
+const CharactersListView = () => {
+  const { characters } = useCharactersContext()
+
   return (
     <ul className="list-group">{
-      charactersList.map((character) => {
+      characters.map((character) => {
         return (
           <li key={character.name} className="list-group-item">
             <CharacterCard character={character} />

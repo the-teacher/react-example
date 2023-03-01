@@ -1,17 +1,20 @@
 import { Character } from '../../graphql.schema'
-import { useEffect, Dispatch, SetStateAction } from "react"
+import { useEffect } from "react"
 
 import ApiService from './ApiService'
 import getCharactersListQuery from '../CharactersList/get-characters-list.gql'
+import { useCharactersContext } from '../CharactersContext'
 
-const useCharacters = (setCharactersList: Dispatch<SetStateAction<Character[]>>) => (
+const useCharacters = () => {
+  const { setCharacters } = useCharactersContext()
+
   useEffect(() => {
     ApiService.request(getCharactersListQuery, { page: 1, name: "rick" } )
     .then((result) => {
       const characters = result.data?.characters?.results ?? []
-      setCharactersList(characters as Character[])
+      setCharacters(characters as Character[])
     })
-  }, [])
-)
+  }, [setCharacters])
+}
 
 export default useCharacters

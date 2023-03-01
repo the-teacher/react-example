@@ -2,21 +2,24 @@ import * as React from "react"
 
 import {
   BrowserRouter,
-  Routes,
-  Route
+  Routes
 } from "react-router-dom"
 
 import AppLayout from "./pages/layouts/AppLayout"
+import { CharactersProvider } from './RickAndMorty/CharactersContext'
+
 import { AppRouter } from './router'
 
 function App() {
   return (
     <AppLayout>
-      <BrowserRouter>
-        <Routes>
-          {AppRouter}
-        </Routes>
-      </BrowserRouter>
+      <CharactersProvider>
+        <BrowserRouter>
+          <Routes>
+            {AppRouter}
+          </Routes>
+        </BrowserRouter>
+      </CharactersProvider>
     </AppLayout>
   )
 }
