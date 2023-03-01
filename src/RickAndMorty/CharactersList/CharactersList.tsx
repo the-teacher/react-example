@@ -1,17 +1,17 @@
-import * as React from "react"
-import { useEffect } from "react"
+import { Character } from '../../graphql.schema'
 
-import ApiService from '../service'
-import getCharactersListQuery from './get-characters-list.gql'
+import * as React from "react"
+import { useState } from "react"
+
+import CharactersListView from '../CharactersListView'
+import { useCharacters } from '../ApiService'
 
 const CharactersList = () => {
-  useEffect(() => {
-    ApiService.request(getCharactersListQuery, { page: 1, name: "rick" } )
-    .then((result) => console.log(result.data.characters))
-  })
+  const [charactersList, setCharactersList] = useState<Character[]>([])
+  useCharacters(setCharactersList)
 
   return (
-    <>RickAndMorty::CharactersList</>
+    <CharactersListView charactersList={charactersList} />
   )
 }
 

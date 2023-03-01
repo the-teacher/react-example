@@ -6,6 +6,15 @@ const getCharactersListQuery = `
       }
       results {
         name
+        image
+        gender
+        created
+        location {
+          name
+        }
+        episode {
+          name
+        }
       }
     }
   }
