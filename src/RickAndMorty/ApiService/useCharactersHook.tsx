@@ -6,11 +6,11 @@ import getCharactersListQuery from '../CharactersList/get-characters-list.gql'
 import { useCharactersContext } from '../CharactersContext'
 
 const useCharacters = () => {
-  const { name, setCharacters, setLoading } = useCharactersContext()
+  const { name, page, setCharacters, setLoading } = useCharactersContext()
 
   useEffect(() => {
     setLoading(true)
-    ApiService.request(getCharactersListQuery, { page: 1, name: name } )
+    ApiService.request(getCharactersListQuery, { page: page, name: name } )
     .then((result) => {
       const characters = result.data?.characters?.results ?? []
       setLoading(false)
