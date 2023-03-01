@@ -4,16 +4,20 @@ import { ReactNode, useState, createContext, useContext, Dispatch, SetStateActio
 
 interface CharactersContextValue {
   page: Number
-  characters: Character[]
   setPage: Dispatch<SetStateAction<Number>>
+  characters: Character[]
   setCharacters: Dispatch<SetStateAction<Character[]>>
+  loading: boolean,
+  setLoading: Dispatch<SetStateAction<boolean>>
 }
 
 const CharactersContext = createContext<CharactersContextValue>({
   page: 1,
-  characters: [],
   setPage: () => ({}),
-  setCharacters: () => ({})
+  characters: [],
+  setCharacters: () => ({}),
+  loading: false,
+  setLoading: () => ({})
 })
 
 interface Props {
@@ -23,11 +27,13 @@ interface Props {
 export const CharactersProvider = ({ children }: Props) => {
   const [page, setPage] = useState<Number>(1)
   const [characters, setCharacters] = useState<Character[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
 
   return (
     <CharactersContext.Provider value={{
-      page, characters,
-      setPage, setCharacters
+      page, setPage,
+      characters, setCharacters,
+      loading, setLoading
     }}>
       {children}
     </CharactersContext.Provider>

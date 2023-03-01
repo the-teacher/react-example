@@ -4,7 +4,13 @@ import CharacterCard from '../CharacterCard'
 import { useCharactersContext } from '../CharactersContext'
 
 const CharactersListView = () => {
-  const { characters } = useCharactersContext()
+  const { characters, loading } = useCharactersContext()
+
+  if (loading) {
+    return (
+      <div>Loading</div>
+    )
+  }
 
   return (
     <ul className="list-group">{
