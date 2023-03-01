@@ -8,6 +8,8 @@ import { useCharactersContext } from '../CharactersContext'
 const useCharacters = () => {
   const { name, page, setCharacters, setLoading, setPagesInfo } = useCharactersContext()
 
+  console.log("PAGE", page)
+
   useEffect(() => {
     setLoading(true)
     ApiService.request(getCharactersListQuery, { page: page, name: name } )

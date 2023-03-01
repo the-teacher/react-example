@@ -2,7 +2,11 @@ import * as React from "react"
 import { useCharactersContext } from '../CharactersContext'
 
 const Pagination = () => {
-  const { pagesInfo: { pages, next } } = useCharactersContext()
+  const { pagesInfo: { pages, next}, setPage } = useCharactersContext()
+
+  const pageLinkHandler = (pageNumber: Number) => (
+    () => setPage(pageNumber)
+  )
 
   return (
     <nav aria-label="pagination">
@@ -13,7 +17,7 @@ const Pagination = () => {
           const active = currentPage ? 'active' : ''
 
           return (<li key={index} className={`page-item ${active}`}>
-            <a className="page-link" href="/">{pageNumber}</a>
+            <a className="page-link" onClick={pageLinkHandler(pageNumber)}>{pageNumber}</a>
             { currentPage && <span className="sr-only">(current)</span> }
           </li>)
         })}

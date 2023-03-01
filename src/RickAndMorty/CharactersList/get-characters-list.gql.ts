@@ -8,6 +8,7 @@ const getCharactersListQuery = `
         prev
       }
       results {
+        id
         name
         image
         gender

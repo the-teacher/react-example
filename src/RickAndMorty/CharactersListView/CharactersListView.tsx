@@ -15,8 +15,10 @@ const CharactersListView = () => {
   return (
     <ul className="list-group">{
       characters.map((character) => {
+        const keyName = character.id + ' ' + character.name
+
         return (
-          <li key={character.name} className="list-group-item">
+          <li key={keyName} className="list-group-item">
             <CharacterCard character={character} />
           </li>
         )
